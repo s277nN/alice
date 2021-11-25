@@ -1,0 +1,138 @@
+// SET: Global CSS Variables.
+:root {
+  // Colors.
+  --color-red             : #{$color-red};
+  --color-orange          : #{$color-orange};
+  --color-yellow          : #{$color-yellow};
+  --color-green           : #{$color-green};
+  --color-blue            : #{$color-blue};
+  --color-hunt-1          : #{$color-hunt-1};
+  --color-hunt-2          : #{$color-hunt-2};
+  --color-hunt-3          : #{$color-hunt-3};
+  --color-hunt-4          : #{$color-hunt-4};
+  --color-hunt-5          : #{$color-hunt-5};
+  --color-hunt-6          : #{$color-hunt-6};
+  --color-hunt-7          : #{$color-hunt-7};
+  --color-hunt-8          : #{$color-hunt-8};
+  --color-hunt-9          : #{$color-hunt-9};
+  --color-hunt-10         : #{$color-hunt-10};
+  --color-primary         : #{$color-primary};
+  --color-purple          : #{$color-purple};
+  --color-secondary       : #{$color-secondary};
+  
+  // Fonts.
+  --font-family-base      : #{$font-family-base};
+  --font-family-code      : #{$font-family-code};
+  --font-size-larger      : #{$font-size-larger};
+  --font-size-large       : #{$font-size-large};
+  --font-size-medium      : #{$font-size-medium};
+  --font-size-small       : #{$font-size-small};
+  --font-size-smaller     : #{$font-size-smaller};
+  --font-weight-light     : #{$font-weight-light};
+  --font-weight-regular   : #{$font-weight-regular};
+  --font-weight-bold      : #{$font-weight-bold};
+  --font-weight-bolder    : #{$font-weight-bolder};
+  --line-height           : #{$line-height};
+
+  // Border.
+  --border-radius-small   : #{$border-radius-small};
+  --border-radius-medium  : #{$border-radius-medium};
+  --border-radius-large   : #{$border-radius-large};
+}
+
+// SET global classes.
+.ui- {
+  &-wrapper {
+    display: grid;
+    grid-template-rows: 80px 1fr;
+    grid-template-areas: "area-navbar" "area-router-view";
+    min-height: 100vh;
+    background-color: var(--color-hunt-bg-2);
+    
+    .router-view {
+      position: relative;
+      grid-area: area-router-view;
+    }
+
+    .router-container {
+      position: relative;
+      margin: auto;
+      max-width: $screen-lg;
+    }
+
+    .cursor-none {
+      pointer-events: none;
+    }
+
+    .code, .pre {
+      padding: 0.75rem 1rem;
+      color: var(--color-red);
+      background-color: var(--color-secondary);
+      border-radius: var(--border-radius-small);
+    }
+
+    .bg-linear {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      display: flex;
+      width: 50vw;
+      height: 80vh;
+      margin: 0 auto;
+      pointer-events: none;
+  
+      &::before,
+      &::after {
+        content: '';
+        width: 50%;
+        height: 80%;
+        border-radius: 999px;
+        filter: blur(150px);
+      }
+  
+      &::before {
+        margin: 25% -1rem 0 0;
+        background-color: $color-purple;
+      }
+  
+      &::after{
+        margin: 0 0 25% -1rem;
+        background-color: $color-primary;
+      }
+    }
+
+    .border-gradient {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        inset: -2px;
+        content: '';
+        border-radius: inherit;
+        background-image: linear-gradient(to right, $color-purple, $color-primary);
+      }
+    }
+  }
+
+  &-modal {
+    .connectors {
+      border-radius: 2rem;
+    }
+
+    .currencies {
+      border-radius: var(--border-radius-large);
+    }
+  }
+
+  
+}
+
+.walletconnect {
+  &-modal__header {
+    display: grid !important;
+    grid-gap: 1rem;
+    grid-template-columns: auto 1fr;
+    padding-right: 2rem;
+  }
+}

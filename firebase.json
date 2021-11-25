@@ -1,0 +1,23 @@
+{
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "**/node_modules/**",
+      "**/.*",
+      "firebase.json",
+      "contract-types.sh",
+      "craco.config.js",
+      "package.json",
+      "yarn.lock",
+      "LICENSE",
+      "tsconfig.json",
+      "tsconfig.paths.json"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,128 @@
+.ui--dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  padding: 4rem;
+  overflow: hidden auto;
+  background-color: rgba($color-secondary, 0.25);
+  backdrop-filter: blur(5px);
+
+  @include screen-xs {
+    padding: 2rem;
+  }
+
+  &.enter,
+  &.exit-active {
+    @include class-contains('-container') {
+      opacity: 0;
+      transform: translate(0, -4px);
+    }
+  }
+
+  &.enter-active {
+    @include class-contains('-container') {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
+  &-container {
+    position: relative;
+    max-width: 440px;
+    margin: 0 auto;
+    background-color: var(--color-hunt-9);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 10px 20px rgba($color-secondary, 0.1), 0 0 0 1px var(--color-hunt-8);
+    transition: all $transition-time $cubic-bezier;
+  }
+
+  &-header {
+    position: relative;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    height: 60px;
+    padding: 0 2rem;
+    border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
+    background-color: var(--color-hunt-8);
+    border-bottom: 2px solid var(--color-hunt-hr);
+
+    .title {
+      line-height: 20px;
+      color: var(--color-hunt-1);
+      font-size: var(--font-size-large);
+      font-weight: var(--font-weight-bold);
+      user-select: none;
+
+      @include text-ellipsis();
+    }
+
+    .btn {
+      &-close {
+        width: 26px;
+        height: 26px;
+        color: var(--color-red);
+
+        &:hover {
+          color: var(--color-primary);
+          background-color: var(--color-hunt-7);
+        }
+
+        .icon {
+          font-size: 28px;
+          font-weight: var(--font-weight-bolder);
+        }
+      }
+    }
+  }
+
+  &-body {
+    position: relative;
+    padding: 2rem;
+    color: var(--color-hunt-2);
+    line-height: var(--line-height);
+
+    small {
+      display: block;
+      margin: 0.75rem 0 0;
+      color: var(--color-hunt-4);
+      font-size: var(--font-size-small);
+    }
+
+    & > div {
+      display: grid;
+      grid-gap: 1rem;
+      grid-auto-flow: column;
+      justify-content: space-between;
+    }
+  }
+
+  &-footer {
+    display: grid;
+    grid-gap: 1rem;
+    grid-auto-flow: column;
+    justify-content: flex-end;
+    padding: 0 1.5rem 1.5rem;
+
+    .btn {
+      width: auto;
+      height: 30px;
+      min-width: 88px;
+      text-transform: capitalize;
+
+      &-close {
+        color: var(--color-hunt-4);
+        background-color: var(--color-hunt-8);
+      }
+
+      .text {
+        font-size: var(--font-size-small);
+        font-weight: var(--font-weight-bold);
+      }
+    }
+  }
+}

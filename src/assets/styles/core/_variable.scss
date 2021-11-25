@@ -1,0 +1,49 @@
+// Color
+$color-red              : #EB4747;
+$color-orange           : #F2994A;
+$color-yellow           : #F6CF56;
+$color-green            : #3FC66D;
+$color-blue             : #105EFB;
+$color-hunt-1           : #FFFFFF;
+$color-hunt-2           : #E8E8EA;
+$color-hunt-3           : #D1D2D4;
+$color-hunt-4           : #8B8E95;
+$color-hunt-5           : #5D616A;
+$color-hunt-6           : #454A55;
+$color-hunt-7           : #2E343F;
+$color-hunt-8           : #202530;
+$color-hunt-9           : #121722;
+$color-hunt-10          : #0E1119;
+$color-primary          : #FD3D39;
+$color-purple           : #A04AD4;
+$color-secondary        : #100515;
+
+// Font
+$font-family-base       : 'Roboto', 'Helvetica Neue', sans-serif;
+$font-family-code       : Consolas, Menlo, Courier, monospace;
+$font-size-larger       : 22px;
+$font-size-large        : 18px;
+$font-size-medium       : 14px;
+$font-size-small        : 12px;
+$font-size-smaller      : 10px;
+$font-weight-light      : 300;
+$font-weight-regular    : 400;
+$font-weight-bold       : 700;
+$font-weight-bolder     : 900;
+$line-height            : 1.525;
+
+// Border
+$border-radius-small    : 4px;
+$border-radius-medium   : 8px;
+$border-radius-large    : 12px;
+
+// Animation
+$animation-time         : 400ms;
+$transition-time        : 200ms;
+$cubic-bezier           : cubic-bezier(0.77, 0, 0.175, 1);
+
+// Media queries breakpoints
+$screen-xs              : 576px;  // Small tablets and large smartphones (landscape view)
+$screen-sm              : 768px;  // Small tablets (portrait view)
+$screen-md              : 992px;  // Tablets and small desktops
+$screen-lg              : 1260px; // Large tablets and desktops
