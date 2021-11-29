@@ -4,71 +4,30 @@
   justify-content: center;
   align-items: center;
 
-  color: var(--color-hunt-5);
-  background-color: transparent;
-  border-radius: var(--border-radius-small);
-  transition: all 128ms ease;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-bold;
 
+  color: var(--color-hunt-4);
+  background-color: var(--color-hunt-8);
+
+  border-radius: $border-radius-small;
   user-select: none;
   cursor: pointer;
 
+  @include class-contains('-container') {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .icon {
     line-height: 0;
-    font-size: var(--font-size-large);
+    font-size: $font-size-medium + 2;
   }
 
   .text {
     line-height: 1;
-    font-weight: var(--font-weight-regular);
-  }
-
-  &-primary {
-    color: var(--color-hunt-1);
-    background-color: var(--color-primary);
-    box-shadow: 0 2px 8px #f7e8eb;
-
-    &:hover {
-      background-color: #c20020;
-    }
-  }
-
-  &-primary2 {
-    color: var(--color-hunt-1);
-    background-image: linear-gradient(to right, $color-purple, $color-primary);
-
-    &:hover {
-      color: var(--color-hunt-2);
-    }
-  }
-
-  &-secondary {
-    color: var(--color-hunt-1);
-    background-color: var(--color-secondary);
-
-    &:hover {
-      color: var(--color-hunt-2);
-    }
-  }
-
-  &-gradient {
-    position: relative;
-    color: var(--color-hunt-1);
-    background-image: linear-gradient(to right, $color-purple, $color-primary);
-
-    & > * {
-      z-index: 1;
-    }
-
-    &::before {
-      position: absolute;
-      top: 2px;
-      right: 2px;
-      bottom: 2px;
-      left: 2px;
-      content: '';
-      border-radius: inherit;
-      background-color: var(--color-secondary);
-    }
+    font-weight: $font-weight-medium;
   }
 
   &-text {
@@ -79,10 +38,63 @@
     }
   }
 
+  &-primary {
+    color: var(--color-hunt-1);
+    background-image: var(--color-primary);
+    background-image: linear-gradient(to right, $color-secondary, $color-primary);
+
+    &:hover {
+      background-image: linear-gradient(to right, rgba($color-secondary, 0.9), rgba($color-primary, 0.9));
+    }
+  }
+
+  &-secondary {
+    color: var(--color-hunt-2);
+    background-color: var(--color-hunt-4);
+
+    &:hover {
+      color: var(--color-hunt-3);
+    }
+  }
+
+  &-overlay {
+    color: var(--color-hunt-4);
+    background-color: rgba($color-hunt-3, 0.5);
+
+    &:hover {
+      background-color: rgba($color-hunt-3, 0.6);
+    }
+  }
+
+  &-linear {
+    position: relative;
+    padding: 1px;
+    color: var(--color-hunt-2);
+    background-color: $color-hunt-3;
+    background-image: linear-gradient(to right, $color-hunt-2, $color-hunt-3);
+
+    &:hover {
+      color: var(--color-hunt-1);
+      background-color: shade($color-hunt-5, 10%);
+    }
+
+    &-container {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background-color: shade($color-hunt-5, 5%);
+    }
+  }
+
+  &:focus {
+    outline: 1px solid var(--color-hunt-3);
+    outline-offset: 1px;
+  }
+
   &:disabled,
   &.disabled {
-    opacity: 0.75;
+    opacity: 0.88;
     cursor: not-allowed;
-    filter: grayscale(25%);
+    filter: grayscale(44%);
   }
 }

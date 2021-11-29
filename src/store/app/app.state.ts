@@ -20,7 +20,7 @@ export const initialState: AppState = {
   },
   modal: {
     visible: false,
-    component: null
+    children: null
   },
   notice: []
 }

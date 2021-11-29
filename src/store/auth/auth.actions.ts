@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit'
 import { User } from '@/types'
 
-enum ActionTypes {
+export enum ActionTypes {
   SET_AUTH = 'SET_AUTH_AUTHENTICATED',
   SET_USER = 'SET_AUTH_USER_PROFILE'
 }

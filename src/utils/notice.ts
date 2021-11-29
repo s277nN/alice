@@ -8,7 +8,7 @@ export interface Notice {
   type: 'info' | 'success' | 'warn' | 'error'
   name?: string
   title: string
-  children: ReactNode
+  content: ReactNode
   duration?: number
 }
 

@@ -4,22 +4,16 @@ $color-orange           : #F2994A;
 $color-yellow           : #F6CF56;
 $color-green            : #3FC66D;
 $color-blue             : #105EFB;
-$color-hunt-1           : #FFFFFF;
-$color-hunt-2           : #E8E8EA;
-$color-hunt-3           : #D1D2D4;
-$color-hunt-4           : #8B8E95;
-$color-hunt-5           : #5D616A;
-$color-hunt-6           : #454A55;
-$color-hunt-7           : #2E343F;
-$color-hunt-8           : #202530;
-$color-hunt-9           : #121722;
-$color-hunt-10          : #0E1119;
-$color-primary          : #FD3D39;
-$color-purple           : #A04AD4;
-$color-secondary        : #100515;
+$color-hunt-1           : #FFFAF5;
+$color-hunt-2           : #FFF3E4;
+$color-hunt-3           : #EED6C4;
+$color-hunt-4           : #6B4F4F;
+$color-hunt-5           : #483434;
+$color-primary          : $color-hunt-5;
+$color-secondary        : $color-hunt-4;
 
 // Font
-$font-family-base       : 'Roboto', 'Helvetica Neue', sans-serif;
+$font-family-base       : 'Ubuntu', 'Helvetica Neue', sans-serif;
 $font-family-code       : Consolas, Menlo, Courier, monospace;
 $font-size-larger       : 22px;
 $font-size-large        : 18px;
@@ -27,10 +21,10 @@ $font-size-medium       : 14px;
 $font-size-small        : 12px;
 $font-size-smaller      : 10px;
 $font-weight-light      : 300;
-$font-weight-regular    : 400;
-$font-weight-bold       : 700;
-$font-weight-bolder     : 900;
-$line-height            : 1.525;
+$font-weight-medium     : 400;
+$font-weight-bold       : 500;
+$font-weight-bolder     : 700;
+$line-height            : 1.510;
 
 // Border
 $border-radius-small    : 4px;

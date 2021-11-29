@@ -4,7 +4,7 @@ import { Token } from '@pancakeswap/sdk'
 import { useTokenContract, useWeb3ReactCore } from '@/hooks'
 import { Fraction } from '@/libs/fraction'
 
-export function useTokenAllowance(token: Token, spender: string) {
+export function useTokenBalance(token: Token) {
   // __STATE <React.Hooks>
   const { account } = useWeb3ReactCore()
   const tokenContract = useTokenContract(token.address, false)
@@ -13,19 +13,19 @@ export function useTokenAllowance(token: Token, spender: string) {
 
   // __EFFECTS <React.Hooks>
   useEffect(() => {
-    async function getAllowance() {
+    async function getBalance() {
       if (!tokenContract) return void 0
 
       try {
-        const [allowance] = (await tokenContract.allowance(account, spender)) as [BigNumber]
-        setState(Fraction.from(allowance))
+        const [balance] = (await tokenContract.balanceOf(account)) as [BigNumber]
+        setState(Fraction.from(balance))
       } catch (error) {
         console.error(error)
       }
     }
 
-    if (account) getAllowance()
-  }, [account, token, spender, tokenContract])
+    if (account) getBalance()
+  }, [account, token, tokenContract])
 
   // __RETURN
   return useMemo(() => state, [account, state])

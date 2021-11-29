@@ -132,3 +132,9 @@ $screen-lg: 1260px; // Large tablets and desktops
 @mixin aspect($height) {
   height: $height * 10 / 16;
 }
+
+@mixin use-modal($class-name) {
+  .ui--modal > .#{$class-name} {
+    @content;
+  }
+}

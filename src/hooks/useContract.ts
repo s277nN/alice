@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { ContractInterface } from '@ethersproject/contracts'
 import { CONTRACTS_ADDRESS, ERC20_INTERFACE, MULTICALL_INTERFACE } from '@/contracts'
 import { createContractFactory } from '@/libs/ethers'
-import { useActiveWeb3React } from '@/hooks'
+import { useWeb3ReactCore } from '@/hooks'
 
 export function useContract(
   contractAddress: string,
@@ -10,7 +10,7 @@ export function useContract(
   withSignerIfPossible: boolean = true
 ) {
   // __STATE <React.Hooks>
-  const { library, account } = useActiveWeb3React()
+  const { library, account } = useWeb3ReactCore()
 
   // __RETURN
   return useMemo(() => {
@@ -32,14 +32,5 @@ export function useContract(
 
 export function useTokenContract(tokenAddress: string, withSignerIfPossible?: boolean) {
   // __RETURN
-  return useContract(tokenAddress, ERC20_INTERFACE, withSignerIfPossible)
-}
-
-export function useMulticallContract(withSignerIfPossible?: boolean) {
-  // __STATE <React.Hooks>
-  const { chainId } = useActiveWeb3React()
-  const address = chainId ? (CONTRACTS_ADDRESS.multicall as any)[chainId] : CONTRACTS_ADDRESS.multicall[97]
-
-  // __RETURN
-  return useContract(address, MULTICALL_INTERFACE, withSignerIfPossible)
+  return useContract(tokenAddress, ERC20_INTERFACE, withSignerIfPossible)?.functions
 }

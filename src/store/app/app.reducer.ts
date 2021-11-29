@@ -16,8 +16,7 @@ export default createReducer(initialState, (builder) => {
         type: payload?.type || 'alert',
         confirmLabel: payload?.confirmLabel || 'OK',
         cancelLabel: payload?.cancelLabel || 'Cancel',
-        resolvePromise: payload?.resolvePromise,
-        rejectPromise: payload?.rejectPromise
+        resolve: payload?.resolve
       }
     })
     .addCase(setModal, (state, { payload }) => {

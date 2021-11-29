@@ -1,20 +1,17 @@
 import { useEffect, useMemo } from 'react'
-import { useSelector } from 'react-redux'
 import { SUPPORTED_WALLETS } from '@/constants'
 import { useAuth } from '@/hooks'
-import { authSelector } from '@/store'
 import { modal } from '@/utils'
 
 export function ConnectWallet() {
   // __STATE <React.Hooks>
   const wallets = useMemo(() => SUPPORTED_WALLETS, [])
-  const isAuthenticated = useSelector(authSelector.getAuthenticated)
-  const { signin } = useAuth()
+  const { active, signin } = useAuth()
 
   // __EFFECTS <React.Hooks>
   useEffect(() => {
-    if (isAuthenticated) setTimeout(modal.off, 256)
-  }, [isAuthenticated])
+    if (active) setTimeout(modal.off, 256)
+  }, [active])
 
   // __RENDER
   return (
@@ -23,8 +20,11 @@ export function ConnectWallet() {
         {wallets.map((record, index) => (
           <li className='ui--connect-wallet-list' key={index}>
             <button className='btn btn-wallet' onClick={() => signin(record.connector)}>
-              <span className='text'>{record.name}</span>
               <img className='icon' src={`/static/images/${record.icon}`} />
+              <div className='text'>
+                <h4 className='h4'>{record.name}</h4>
+                <h6 className='h6'>{record.description}</h6>
+              </div>
             </button>
           </li>
         ))}

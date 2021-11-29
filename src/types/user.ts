@@ -6,6 +6,6 @@ export interface User {
   bio?: string
   balance: number
   bonus: number
-  createdAt: string | Date
-  updatedAt: string | Date
+  createdAt: string | number
+  updatedAt: string | number
 }

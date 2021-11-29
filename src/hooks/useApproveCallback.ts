@@ -1,22 +1,27 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
-import { useActiveWeb3React, useTokenContract, useTokenAllowance } from '@/hooks'
-import { Currency, ApprovalState } from '@/types'
+// import { MaxUint256 } from '@ethersproject/constants'
+import { Token } from '@pancakeswap/sdk'
+import { useTokenContract, useTokenAllowance, useWeb3ReactCore } from '@/hooks'
+import { Fraction } from '@/libs/fraction'
+import { ApprovalState } from '@/types'
 
-export function useApproveCallback(
-  currency: Currency,
-  spender: string
-): [ApprovalState, (amount?: BigNumber) => Promise<void>, number] {
+export type ApproveCallback = [ApprovalState, (amount?: BigNumber) => Promise<void>, Fraction]
+
+export function useApproveCallback(token: Token, spender: string): ApproveCallback {
   // __STATE <React.Hooks>
-  const { account } = useActiveWeb3React()
+  const { account } = useWeb3ReactCore()
+  const tokenContract = useTokenContract(token.address)
+  const allowance = useTokenAllowance(token, spender)
+
   const [approvalState, setApprovalState] = useState<ApprovalState>(ApprovalState.APPROVED)
-  const tokenContract = useTokenContract(currency.address)
-  const currentAllowance = useTokenAllowance(currency, spender, approvalState)
 
   // __EFFECTS <React.Hooks>
   useEffect(() => {
-    setApprovalState(currentAllowance ? ApprovalState.APPROVED : ApprovalState.NOT_APPROVED)
-  }, [currentAllowance])
+    if (allowance.isZero()) {
+      setApprovalState(ApprovalState.NOT_APPROVED)
+    }
+  }, [allowance])
 
   // __FUNCTIONS
   const approve = useCallback(
@@ -43,5 +48,5 @@ export function useApproveCallback(
   )
 
   // __RETUEN
-  return [approvalState, approve, currentAllowance]
+  return useMemo(() => [approvalState, approve, allowance], [approvalState, approve, allowance])
 }

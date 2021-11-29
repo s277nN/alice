@@ -1,27 +1,71 @@
-.ui--connect-wallet {
-  &-group {
-  }
+@include use-modal('connect-wallet') {
+  width: 360px;
+}
 
-  &-list {
+.ui--connect-wallet {
+  display: grid;
+  grid-gap: 2rem;
+  grid-auto-flow: row;
+
+  &-group {
+    display: grid;
+    grid-gap: 1rem;
+    padding: 0.5rem 0 0;
+
+    &:hover {
+      .btn {
+        opacity: 0.75;
+      }
+    }
   }
 
   &-footer {
+    text-align: center;
   }
 
   .btn {
     &-wallet {
-      .text {
+      justify-content: flex-start;
+      grid-gap: 1rem;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background-color: rgba($color-hunt-3, 0.5);
+      border-radius: $border-radius-medium;
+      transition: all $transition-time ease;
+
+      &:hover {
+        opacity: 1 !important;
+        background-color: rgba($color-hunt-3, 0.75);
       }
 
       .icon {
+        display: block;
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+        box-shadow: 0 0 0 2px var(--color-hunt-2);
+      }
+
+      .text {
+        text-align: left;
+      }
+
+      .h4 {
+        color: var(--color-primary);
+        font-weight: $font-weight-bold;
+        line-height: 1.32;
+      }
+
+      .h6 {
+        color: var(--color-secondary);
       }
     }
 
     &-guide {
-      .text {
-      }
+      grid-gap: 0.5rem;
 
       .icon {
+        font-size: $font-size-small;
       }
     }
   }

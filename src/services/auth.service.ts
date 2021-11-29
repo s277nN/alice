@@ -6,6 +6,7 @@ import { db } from '@/libs/firebase'
 import { dispatch, authActions } from '@/store'
 import { notice } from '@/utils'
 import Web3Token from 'web3-token'
+import { formatISO } from 'date-fns'
 
 export class authService {
   /**
@@ -15,7 +16,7 @@ export class authService {
     const provider = GivenProvider()
     const signer = provider.getSigner()
 
-    const signature = await Web3Token.sign((body: string) => signer.signMessage(body), '1m')
+    const signature = await Web3Token.sign((body: string) => signer.signMessage(body), '1y')
     const address = await signer.getAddress()
 
     if (signature) {
@@ -23,12 +24,12 @@ export class authService {
       await this.getProfile(address)
       notice.success({
         title: 'Success',
-        children: 'Sign-In successful.'
+        content: 'Sign-In successful.'
       })
     } else {
       notice.warn({
         title: 'Failed',
-        children: 'User rejected the request.'
+        content: 'User rejected the request.'
       })
     }
   }
@@ -53,8 +54,8 @@ export class authService {
             name: user.name || 'unnamed',
             balance: user.balance || 0,
             bonus: user.bonus || 0,
-            createdAt: user.createdAt?.toDate() || new Date(),
-            updatedAt: user.updatedAt?.toDate() || user.createdAt?.toDate() || new Date()
+            createdAt: formatISO(user.createdAt?.toDate() || Date.now()),
+            updatedAt: formatISO(user.updatedAt?.toDate() || user.createdAt?.toDate() || Date.now())
           })
         )
       }

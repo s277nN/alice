@@ -27,6 +27,7 @@ declare interface Array<T = any> {
   orderBy: (prop: keyof T, type?: string) => T[]
 }
 
+declare module '@metamask/jazzicon'
 declare module 'web3-token'
 declare module '*.json'
 declare module '*.svg'

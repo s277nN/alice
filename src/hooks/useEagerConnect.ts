@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
 import { useAuth } from '@/hooks'
 import { configs } from '@/libs/configs'
 import { getCookie } from '@/libs/cookies'
@@ -8,23 +7,20 @@ import { Connectors } from '@/types'
 
 export function useEagerConnect() {
   // __STATE <Rect.Hooks>
-  const { account } = useWeb3ReactCore()
-  const { signin } = useAuth()
+  const { active, signin } = useAuth()
 
   // __EFFECTS <React.Hooks>
   useEffect(() => {
-    if (account) {
+    if (active) {
       const passport: string | null = getCookie(configs.APP_AUTH)
-      if (passport) {
-        authService.getProfile()
-      } else {
-        authService.signin()
-      }
+      if (passport) authService.getProfile()
+      else authService.signin()
     } else {
       const connector: Connectors = getCookie(configs.APP_CONNECTOR)
       if (connector) signin(connector)
+      else authService.signout()
     }
-  }, [account, signin])
+  }, [active, signin])
 
   return void 0
 }

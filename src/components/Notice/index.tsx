@@ -1,13 +1,21 @@
-import { useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { appActions, appSelector } from '@/store'
+import { useCallback, useMemo } from 'react'
+import { useAppDispatch, useAppSelector, appActions, appSelector } from '@/store'
 import { Notice } from '@/types'
 import { NoticeItem } from './item'
 
 export function NoticeContainer() {
   // __STATE <React.Hooks>
-  const dispatch = useDispatch()
-  const notices = useSelector(appSelector.getNotice)
+  const dispatch = useAppDispatch()
+  const notices = useAppSelector(appSelector.getNotice)
+  const icon = useMemo(
+    () => ({
+      info: 'bi-megaphone-fill',
+      success: 'bi-check-circle-fill',
+      warn: 'bi-exclamation-circle-fill',
+      error: 'bi-exclamation-triangle-fill'
+    }),
+    []
+  )
 
   // __FUNCTIONS
   const handleRemove = useCallback((notice: Notice) => {
@@ -24,7 +32,7 @@ export function NoticeContainer() {
   return (
     <div className='ui--notice'>
       {notices.map((record) => (
-        <NoticeItem key={record.vid} record={record} onRemove={handleRemove} />
+        <NoticeItem key={record.vid} record={record} icon={icon[record.type]} onRemove={handleRemove} />
       ))}
     </div>
   )

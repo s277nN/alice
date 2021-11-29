@@ -1,6 +1,6 @@
 /**
   =========================================================
-  * This website is produced by Undefined Co., ltd.
+  * This website is produced by Unknown Co., ltd.
   * e-mail: {emailAddress}
   * website: {website}
   =========================================================
@@ -14,14 +14,14 @@
   'core/reset',
   'core/global';
 
-// Components Styles
+// Global Components
 @import
   'components/button',
-  'components/dialog',
   'components/modal',
   'components/notice';
 
 // Specific Components
 @import
   'components/navbar',
-  'components/connect-wallet';
+  'components/connect-wallet',
+  'components/account-details';

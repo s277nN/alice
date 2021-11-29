@@ -1,4 +1,5 @@
-import { ChianConfigs, Network } from '@/types'
+import { Network } from '@/constants/networks'
+import { ChianConfigs } from '@/types'
 
 export const configs = {
   APP_MODE: process.env.NODE_ENV,
@@ -67,4 +68,4 @@ export const chian: ChianConfigs = {
 }[configs.APP_CHAIN_ID]!
 
 export const isMainnet: boolean = chian.network === Network.Mainnet
-export const isTestnet: boolean = chian.network === Network.Mainnet
+export const isTestnet: boolean = chian.network === Network.Testnet

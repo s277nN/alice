@@ -5,9 +5,14 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import { chian } from '@/libs/configs'
 import { getRpcUrl } from '@/libs/ethers'
-import { Connectors } from '@/types'
 
 const RPC_URL = getRpcUrl()
+
+export enum Connectors {
+  Injected = 'injected',
+  BSC = 'bsc',
+  WalletConnect = 'walletconnect'
+}
 
 export function getLibrary(provider: any) {
   const library = new Web3Provider(provider, chian.chianId)

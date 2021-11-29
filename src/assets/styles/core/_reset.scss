@@ -30,10 +30,10 @@ time, mark, audio, video {
 html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-medium);
-  color: var(--color--hunt-1);
-  background-color: var(--color-hunt-9);
+  font-family: $font-family-base;
+  font-size: $font-size-medium;
+  color: var(--color-hunt-1);
+  background-color: var(--color-hunt-5);
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -47,13 +47,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 code, pre {
-  font-family: var(--font-family-code);
+  font-family: $font-family-code;
 }
 
 hr {
   border: unset;
   margin: 0.75rem 0;
-  border-bottom: 1px solid var(--color-hunt-2);
+  border-bottom: 1px solid silver;
 }
 
 ul,
@@ -87,10 +87,6 @@ button {
   border: 0 solid transparent;
   box-shadow: 0 0 0 transparent;
   user-select: none;
-
-  &[disabled] {
-    cursor: not-allowed;
-  }
 }
 
 input, select, textarea {
@@ -108,8 +104,4 @@ a {
   cursor: pointer;
   display: inline-block;
   user-select: none;
-
-  &[disabled] {
-    cursor: not-allowed;
-  }
 }

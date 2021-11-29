@@ -1,18 +1,20 @@
-import { ReactNode } from 'react'
+import { ReactChild, ReactFragment, ReactPortal } from 'react'
 import { dispatch, appActions } from '@/store'
+import { UseDialog } from '@/types'
+
+export type DialogChild = ReactChild | ReactFragment | ReactPortal | UseDialog | string
 
 export interface Dialog {
   visible: boolean
   type?: 'alert' | 'confirm'
   title?: string
-  children: ReactNode
+  children: DialogChild | null
   confirmLabel?: string
   cancelLabel?: string
-  resolvePromise?: (value: DialogResults | PromiseLike<DialogResults>) => void
-  rejectPromise?: (reason?: any) => void
+  resolve?: (value: DialogResults | PromiseLike<DialogResults>) => void
 }
 
-export interface DialogOptions extends Omit<Dialog, 'visible' | 'resolvePromise' | 'rejectPromise'> {}
+export interface DialogOptions extends Omit<Dialog, 'visible' | 'children' | 'resolve'> {}
 
 export interface DialogResults {
   isConfirmed: boolean
@@ -24,21 +26,15 @@ export interface DialogResults {
  *
  * @param {DialogOptions | string} options
  */
-export async function dialog(options: DialogOptions | string): Promise<DialogResults> {
-  return new Promise((resolve, reject) => {
-    let payload: any = {
+export async function dialog(children: DialogChild, options?: DialogOptions): Promise<DialogResults> {
+  return new Promise((resolve) => {
+    const payload: Dialog = {
       visible: true,
-      resolvePromise: resolve,
-      rejectPromise: reject
+      children,
+      resolve,
+      ...options
     }
 
-    if (typeof options === 'string') {
-      payload.children = options
-    } else {
-      payload = { ...payload, ...options }
-    }
-
-    const action = appActions.setDialog(payload)
-    dispatch(action)
+    dispatch(appActions.setDialog(payload))
   })
 }

@@ -1,4 +1,4 @@
-import { ChainId } from '@/types'
+import { ChainId } from '@/constants/networks'
 
 export const CONTRACTS_ADDRESS = {
   multicall: {

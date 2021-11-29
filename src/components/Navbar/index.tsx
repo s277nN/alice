@@ -1,42 +1,39 @@
 import { useCallback } from 'react'
-import { useSelector } from 'react-redux'
-import { useActiveWeb3React } from '@/hooks'
-import { authSelector } from '@/store'
+import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
 import { modal, shortAddress } from '@/utils'
-import { UseModal } from '@/types'
+import { UseModal as Modal } from '@/types'
 
 export function NavbarComponent() {
   // __STATE <React.Hooks>
-  const { active } = useActiveWeb3React()
-  const user = useSelector(authSelector.getUser)
+  const { account } = useWeb3ReactCore()
 
   // __FUNCTIONS
   const handleConnect = useCallback(() => {
-    if (active) return void 0
+    if (account) return void 0
 
-    modal.on(UseModal.CONNECT_WALLET, { name: 'connect-wallet', title: 'Connect to a wallet' })
-  }, [active])
+    modal.on(Modal.CONNECT_WALLET, { name: 'connect-wallet', title: 'Connect to a wallet' })
+  }, [account])
 
   const handleAccount = useCallback(() => {
-    if (!user) return void 0
+    if (!account) return void 0
 
-    // modal.on(<AccountDetails />, { name: 'account', title: 'Account' })
-  }, [user])
+    modal.on(Modal.ACCOUNT_DETAILS, { name: 'account-details', title: 'Account' })
+  }, [account])
 
   // __RENDER
   return (
     <nav className='ui--navbar'>
       <div className='ui--navbar-container'>
-        <div className='ui--navbar-column lf'></div>
+        <div className='ui--navbar-column lf'>&nbsp;</div>
 
         <div className='ui--navbar-column rg'>
-          {user ? (
-            <button className='btn btn-account' onClick={handleAccount}>
+          {account ? (
+            <button className='btn btn-secondary btn-account' onClick={handleAccount}>
               <span className='icon bi bi-wallet'></span>
-              <span className='text'>{shortAddress(user.uid)}</span>
+              <span className='text'>{shortAddress(account)}</span>
             </button>
           ) : (
-            <button className='btn btn-connect' onClick={handleConnect}>
+            <button className='btn btn-secondary btn-connect' onClick={handleConnect}>
               <span className='icon bi bi-wallet2'></span>
               <span className='text'>Connect Wallet</span>
             </button>

@@ -1,14 +1,17 @@
 import { BigNumber } from '@ethersproject/bignumber'
-import { Connectors, CurrencyStatus, Network } from './constants'
+import { TokenTypes } from '@/constants/tokens'
+import { Network } from '@/constants/networks'
+import { Connectors } from '@/utils/connectors'
 
-export * from './constants'
 export type { Dialog, DialogOptions, DialogResults } from '@/utils/dialog'
 export type { Notice, NoticeOptions } from '@/utils/notice'
 export type { MediaBlob } from '@/utils/media'
 export type { Modal, ModalOptions } from '@/utils/modal'
 export type { User } from './user'
 
-export { UseModal } from '@/utils/modal'
+export * from '@/constants/status'
+export { UseDialog, UseModal } from '@/constants/utils'
+export { Connectors } from '@/utils/connectors'
 
 export type Theme = 'default' | 'light' | 'dark'
 
@@ -30,7 +33,7 @@ export interface WalletInfo {
 }
 
 export interface Currency {
-  type: CurrencyStatus
+  type: TokenTypes
   name: string
   symbol: string
   address: string

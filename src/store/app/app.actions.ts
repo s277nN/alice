@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit'
 import { Dialog, Modal, Notice, Theme } from '@/types'
 
-enum ActionTypes {
+export enum ActionTypes {
   SET_LANG = 'SET_APP_LANGUAGE',
   SET_THEME = 'SET_APP_THEME',
   SET_DIALOG = 'SET_APP_DIALOG',

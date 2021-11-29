@@ -1,32 +1,25 @@
 .ui--modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 50;
+  inset: 0;
+  z-index: 40;
   padding: 4rem;
   display: grid;
   overflow: hidden auto;
-  background-color: rgba($color-secondary, 0.25);
+  background-color: rgba($color-hunt-5, 0.25);
   backdrop-filter: blur(5px);
-
-  @include screen-xs {
-    padding: 2rem 1rem;
-  }
 
   &.enter,
   &.exit-active {
     @include class-contains('-container') {
       opacity: 0;
-      transform: translate(0, -4px);
+      transform: translateY(-2px);
     }
   }
 
   &.enter-active {
     @include class-contains('-container') {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translateY(0);
     }
   }
 
@@ -35,9 +28,11 @@
     align-self: flex-start;
     justify-self: center;
     margin: 0 auto;
-    background-color: var(--color-hunt-9);
-    border-radius: var(--border-radius-medium);
-    box-shadow: 0 10px 20px rgba($color-secondary, 0.1), 0 0 0 1px var(--color-hunt-8);
+    min-width: 256px;
+    max-width: $screen-md;
+    border-radius: $border-radius-large;
+    background-color: var(--color-hunt-2);
+    box-shadow: 0 0 0 1px var(--color-hunt-3), 0 1rem 2rem shade($color-secondary, 50%);
     transition: all $transition-time $cubic-bezier;
   }
 
@@ -49,16 +44,16 @@
     align-items: center;
     height: 60px;
     padding: 0 2rem;
-    border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
-    background-color: var(--color-hunt-8);
-    border-bottom: 2px solid var(--color-hunt-hr);
+    border-radius: $border-radius-large $border-radius-large 0 0;
+    background-color: var(--color-hunt-3);
+    border-bottom: 2px solid var(--color-hunt-3);
+    user-select: none;
 
     .title {
-      line-height: 20px;
-      color: var(--color-hunt-1);
-      font-size: var(--font-size-large);
-      font-weight: var(--font-weight-bold);
-      user-select: none;
+      line-height: 26px;
+      color: var(--color-primary);
+      font-size: $font-size-large;
+      font-weight: $font-weight-bolder;
 
       @include text-ellipsis();
     }
@@ -67,16 +62,10 @@
       &-close {
         width: 26px;
         height: 26px;
-        color: var(--color-red);
+        color: var(--color-hunt-4);
 
         &:hover {
-          color: var(--color-primary);
-          background-color: var(--color-hunt-7);
-        }
-
-        .icon {
-          font-size: 28px;
-          font-weight: var(--font-weight-bolder);
+          color: var(--color-red);
         }
       }
     }
@@ -84,6 +73,47 @@
 
   &-boby {
     padding: 2rem;
-    background-color: var(--color-hunt-bg);
+    color: var(--color-primary);
+  }
+
+  // &-footer {}
+
+  // &.is-default {}
+
+  &.is-dialog {
+    @include class-endWith('modal-container') {
+      min-width: 360px;
+    }
+
+    @include class-endWith('modal-body') {
+      line-height: $line-height;
+      color: var(--color-hunt-4);
+
+      small {
+        display: block;
+        margin: 0.75rem 0 0;
+        font-size: var(--font-size-small);
+      }
+    }
+
+    @include class-endWith('modal-footer') {
+      display: grid;
+      grid-gap: 1rem;
+      grid-auto-flow: column;
+      justify-content: flex-end;
+      padding: 0 1.5rem 1.5rem;
+
+      .btn {
+        min-width: 80px;
+        width: auto;
+        height: 30px;
+
+        .text {
+          text-transform: capitalize;
+          font-size: $font-size-small;
+          font-weight: $font-weight-bold;
+        }
+      }
+    }
   }
 }

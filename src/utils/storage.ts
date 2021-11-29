@@ -1,10 +1,8 @@
-import { StorageProps } from '@/types'
-
 /**
  * Local Storege Manager.
  */
-export const storage: StorageProps = {
-  get: (key) => {
+export class storage {
+  static get(key: string): string | null | void {
     if (localStorage.getItem(key)) {
       try {
         return localStorage.getItem(key)
@@ -13,13 +11,13 @@ export const storage: StorageProps = {
         throw error
       }
     }
-  },
+  }
 
-  set: (key, input) => {
-    localStorage.setItem(key, input)
-  },
+  static set(key: string, value: string): void {
+    localStorage.setItem(key, value)
+  }
 
-  remove: (key) => {
+  static remove(key: string): void {
     localStorage.removeItem(key)
   }
 }
@@ -27,8 +25,8 @@ export const storage: StorageProps = {
 /**
  * Session Storege Manager.
  */
-export const session: StorageProps = {
-  get: (key) => {
+export class session {
+  static get(key: string): string | null | void {
     if (sessionStorage.getItem(key)) {
       try {
         return sessionStorage.getItem(key)
@@ -37,13 +35,13 @@ export const session: StorageProps = {
         throw error
       }
     }
-  },
+  }
 
-  set: (key, input) => {
-    sessionStorage.setItem(key, input)
-  },
+  static set(key: string, value: string): void {
+    sessionStorage.setItem(key, value)
+  }
 
-  remove: (key) => {
+  static remove(key: string): void {
     sessionStorage.removeItem(key)
   }
 }

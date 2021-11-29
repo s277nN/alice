@@ -2,31 +2,20 @@
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 40;
-  padding: 0 2rem;
-  display: block !important;
+  z-index: 20;
+  padding: 0 1.5rem;
   grid-area: area-navbar;
 
-  @include screen-sm {
-    padding: 0 1rem;
-  }
-
-  @include screen-xs {
-    position: relative;
-  }
+  // @include screen-sm {}
+  // @include screen-xs {}
 
   &-container {
     position: relative;
     display: grid;
     grid-gap: 2rem;
-    grid-auto-flow: column;
-    justify-content: space-between;
-    align-items: center;
+    grid-template-columns: 1fr auto;
+    align-items: flex-end;
     height: 100%;
-
-    @include screen-xs {
-      grid-gap: 1rem;
-    }
   }
 
   &-column {
@@ -43,178 +32,18 @@
       grid-gap: 2rem;
       justify-self: flex-end;
     }
-
-    .account {
-      display: grid;
-      grid-gap: 1rem;
-      grid-auto-flow: column;
-      align-items: center;
-
-      padding: 5px;
-      padding-left: 1rem;
-      background-color: var(--color-hunt-10);
-      border-radius: var(--border-radius-medium);
-
-      @include screen-xs {
-        grid-gap: 1rem;
-        padding: 4px;
-      }
-
-      .icon {
-        width: 28px;
-        height: 28px;
-
-        @include screen-xs {
-          display: none;
-        }
-      }
-
-      .balance {
-        p {
-          &:nth-child(1) {
-            color: var(--color-hunt-1);
-            font-weight: var(--font-weight-bold);
-          }
-
-          &:nth-child(2) {
-            text-align: right;
-            color: var(--color-hunt-3);
-            font-size: var(--font-size-smaller);
-          }
-        }
-
-        @include screen-xs {
-          display: none;
-        }
-      }
-
-      .address {
-        cursor: pointer;
-        line-height: 40px;
-        padding: 0 1rem;
-        font-weight: var(--font-weight-bold);
-        color: var(--color-primary);
-        background-color: var(--color-hunt-8);
-        border-radius: var(--border-radius-medium);
-
-        @include screen-xs {
-          line-height: 32px;
-        }
-      }
-    }
-
-    .btn {
-      &-logo {
-        width: 170px;
-        margin-right: 3rem;
-
-        @include screen-sm {
-          margin: 0;
-        }
-
-        @include screen-xs {
-          width: 140px;
-        }
-      }
-
-      &-route {
-        height: 100%;
-        margin-right: 2rem;
-        border-radius: unset;
-
-        @include screen-sm {
-          display: none;
-        }
-
-        &:hover {
-          .text {
-            color: var(--color-hunt-3);
-          }
-        }
-
-        &.active {
-          border-bottom: 3px solid var(--color-primary);
-
-          .text {
-            font-weight: var(--font-weight-bold);
-          }
-        }
-
-        .text {
-          color: var(--color-hunt-2);
-          font-size: var(--font-size-large);
-        }
-      }
-
-      &-connect {
-        grid-gap: 1rem;
-        height: 46px;
-        padding: 0 2rem;
-        border-radius: 12px;
-      }
-
-      &-menu {
-        width: 40px;
-        height: 40px;
-        margin-right: 1rem;
-        border: 1px solid var(--color-hunt-9);
-
-        @include screen-xs {
-          margin-right: 0.5rem;
-        }
-
-        @include screen-xs-min {
-          display: none;
-        }
-
-        .icon {
-          font-size: 2.25rem;
-          color: var(--color-hunt-2);
-        }
-      }
-    }
   }
 
-  &-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 120;
-    padding: 2rem;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba($color-secondary, 0.88);
-    backdrop-filter: blur(10px);
+  .btn {
+    &-account,
+    &-connect {
+      grid-gap: 0.75rem;
+      padding: 0 1.5rem;
+      height: 40px;
+      border-radius: $border-radius-medium;
 
-    &-container {
-      position: relative;
-      display: grid;
-      grid-gap: 1rem;
-    }
-
-    .btn {
-      &-route {
-        padding: 1rem 2rem;
-
-        .text {
-          color: var(--color-hunt-2);
-          font-size: var(--font-size-larger);
-        }
-      }
-
-      &-close {
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        width: 40px;
-        height: 40px;
-
-        .icon {
-          color: var(--color-hunt-2);
-        }
+      .text {
+        font-weight: $font-weight-bold;
       }
     }
   }

@@ -1,0 +1,7 @@
+@include use-modal('account-detail') {
+  width: 360px;
+}
+
+.ui--account-details {
+  color: var(--color-primary);
+}

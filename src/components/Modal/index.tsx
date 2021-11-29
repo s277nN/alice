@@ -1,29 +1,27 @@
-import { useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useCallback, useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import { AccountDetails, ConnectWallet } from '@/components'
-import { appActions, appSelector } from '@/store'
+import { useAppDispatch, useAppSelector, appActions, appSelector } from '@/store'
 import { modal, scrollOff } from '@/utils'
-import { Modal, UseModal } from '@/types'
+import { Modal } from '@/types'
+import { getCurrentContant } from './register'
 import cls from 'classnames'
-
-function renderCurrentContant(name: UseModal | null) {
-  switch (name) {
-    case UseModal.CONNECT_WALLET:
-      return <ConnectWallet />
-
-    case UseModal.ACCOUNT_DETAILS:
-      return <AccountDetails />
-
-    default:
-      return null
-  }
-}
 
 export function ModalContainer() {
   // __STATE <React.Hooks>
-  const dispatch = useDispatch()
-  const state = useSelector(appSelector.getModal)
+  const dispatch = useAppDispatch()
+  const state = useAppSelector(appSelector.getModal)
+
+  // __EFFECTS <React.Hooks>
+  useEffect(() => {
+    function listener({ code }: KeyboardEvent) {
+      if (code === 'Escape') modal.off()
+    }
+
+    if (state.visible) addEventListener('keydown', listener)
+    else removeEventListener('keydown', listener)
+
+    return () => removeEventListener('keydown', listener)
+  }, [state])
 
   // __FUNCTIONS
   const handleOnExited = useCallback(() => {
@@ -31,7 +29,7 @@ export function ModalContainer() {
       visible: false,
       name: void 0,
       title: void 0,
-      component: null
+      children: null
     }
 
     dispatch(appActions.setModal(payload))
@@ -47,17 +45,17 @@ export function ModalContainer() {
       onEnter={() => scrollOff(true)}
       onExited={handleOnExited}
     >
-      <div className='ui--modal'>
+      <div className='ui--modal is-default'>
         <div className={cls('ui--modal-container', state.name)}>
           <div className='ui--modal-header'>
-            <div className='title'>{state.title || 'Modal Title'}</div>
+            <div className='title'>{state.title || 'Text title.'}</div>
 
-            <button type='button' className='btn btn-close' onClick={modal.off}>
-              <span className='icon bi bi-x'></span>
+            <button className='btn btn-close' title='Close.' onClick={modal.off}>
+              <span className='icon bi bi-x-lg'></span>
             </button>
           </div>
 
-          <div className='ui--modal-boby'>{renderCurrentContant(state.component)}</div>
+          <div className='ui--modal-boby'>{getCurrentContant(state)}</div>
         </div>
       </div>
     </CSSTransition>
